@@ -24,14 +24,3 @@ MedianFinder.prototype.findMedian = function() {
  * mf.addNum(1);
  * mf.findMedian();
  */
-
-var mf = new MedianFinder();
-mf.addNum(1);
-mf.addNum(3);
-mf.addNum(4);
-mf.addNum(2);
-mf.addNum(5);
-console.log(mf);
-
-var result = mf.findMedian();
-console.log(result);
