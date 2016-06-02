@@ -74,6 +74,4 @@ var makeChange = function(total){
 
 console.log(makeChange(25));
 
-console.log(makeChange(25));
-
 
