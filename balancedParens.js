@@ -24,33 +24,20 @@
 */
 
 var balancedParens = function(str) {
-  var stack = [];
-
-  var match = {
-    '{': '}',
+  var options = {
     '(': ')',
+    '{': '}',
     '[': ']'
   };
 
-  var openParens = {
-    '[': '[',
-    '(': '(',
-    '{': '{',
-  };
-
-  var closeParens = {
-    ']': ']',
-    ')': ')',
-    '}': '}'
-  };
+  var stack = [];
 
   for (var i = 0; i < str.length; i++) {
-    var char = str[i];
-    if (openParens[char]) {
-      stack.push(char);
-    } else if (closeParens[char]) {
-      var opener = stack.pop();
-      if (char !== match[opener]) {
+    var currentChar = str[i];
+    if (options[currentChar]) {
+      stack.push(currentChar);
+    } else if (currentChar === '}' || currentChar === ']' || currentChar === ')') {
+      if (options[stack.pop()] !== currentChar) {
         return false;
       }
     }
@@ -60,10 +47,10 @@ var balancedParens = function(str) {
 
 };
 
+console.log(balancedParens('(')); // false
+console.log(balancedParens('()')); // true
+console.log(balancedParens(')(')); // false
+console.log(balancedParens('(())'));  // true
 console.log(balancedParens('[](){}')); // true
 console.log(balancedParens('[({})]'));   // true
 console.log(balancedParens('[(]{)}')); // false
-console.log(balancedParens('var wow  = { yo: thisIsAwesome() }')); // true
-console.log(balancedParens(' var hubble = function() { telescopes.awesome();')); // false
-
-
