@@ -13,24 +13,21 @@
   */
 
 var allAnagrams = function(str) {
-  var chars = str.split('');
   var result = [];
 
-  var create = function(anagram, left, options) {
-    if (!left) {
-      result.push(anagram);
-      return;
+  var recurse = function(current, optionsLeft) {
+    if (!optionsLeft.length) {
+      return result.push(current);
     }
 
-    for (var i = 0; i < options.length; i++) {
-      newOptions = options.slice(0, i).concat(options.slice(i+1));
-      create(anagram + options[i], left - 1, newOptions);
+    for (var i = 0; i < optionsLeft.length; i++) {
+      recurse(current + optionsLeft[i], optionsLeft.slice(0,i).concat(optionsLeft.slice(i+1)));
     }
+
   };
 
-  create('', str.length, chars);
+  recurse('', str.split(''));
   return result;
-
 };
 
 console.log(allAnagrams('abc'));
