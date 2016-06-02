@@ -24,34 +24,34 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-// var makeChange = function(amount) {
-//   var count = 0;
-//   var options = {};
-//   var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+// bad - slow
 
-//   var permutations = function(left, group) {
-//     if (left === 0) {
-//       group.sort();
-//       if (options[JSON.stringify(group)]) {
-//         return;
-//       }
-//       options[JSON.stringify(group)] = true;
-//       count++;
-//       return;
-//     } else if (left < 0) {
-//       return;
-//     }
+var makeChange = function(val) {
+  var options = [1, 2, 5, 10, 20, 50, 100, 200];
+  var results = {};
+  var count = 0;
 
-//     coins.forEach(function(coin) {
-//       permutations(left - coin, group.concat(coin));
-//     });
-//   };
+  var recurse = function(sum, coins) {
+    if (sum === val) {
+      if (!results[coins.sort()]) {
+        count++;
+      }
+      results[coins.sort()] = true;
+      return;
+    } else if (sum > val) {
+      return;
+    }
+    options.forEach(function(coin) {
+      recurse(sum + coin, coins.concat(coin));
+    });
+  }
 
-//   permutations(amount, []);
-//   return count;;
+  recurse(0, []);
+  return count;
 
-// };
+};
 
+// much better
 var makeChange = function(total){
   var output = 0;
   var denominations = [1, 2, 5, 10, 20, 50, 100, 200];
@@ -72,7 +72,8 @@ var makeChange = function(total){
   return output;
 };
 
-// console.log(makeChange(25));
+console.log(makeChange(25));
 
+console.log(makeChange(25));
 
 
