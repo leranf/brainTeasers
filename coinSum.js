@@ -26,30 +26,31 @@ makeChange(2) === 2
 
 // bad - slow
 
-var makeChange = function(val) {
-  var options = [1, 2, 5, 10, 20, 50, 100, 200];
-  var results = {};
-  var count = 0;
+// var makeChange = function(val) {
+//   var options = [1, 2, 5, 10, 20, 50, 100, 200];
+//   var results = {};
+//   var count = 0;
 
-  var recurse = function(sum, coins) {
-    if (sum === val) {
-      if (!results[coins.sort()]) {
-        count++;
-      }
-      results[coins.sort()] = true;
-      return;
-    } else if (sum > val) {
-      return;
-    }
-    options.forEach(function(coin) {
-      recurse(sum + coin, coins.concat(coin));
-    });
-  }
+//   var recurse = function(sum, coins) {
+//     if (sum === val) {
+//       var perm = coins.sort();
+//       if (!results[perm]) {
+//         count++;
+//         results[perm] = true;
+//       } 
+//       return;
+//     } else if (sum > val) {
+//       return;
+//     }
+//     options.forEach(function(coin) {
+//       recurse(sum + coin, coins.concat(coin));
+//     });
+//   }
 
-  recurse(0, []);
-  return count;
+//   recurse(0, []);
+//   return count;
 
-};
+// };
 
 // much better
 var makeChange = function(total){
@@ -72,6 +73,6 @@ var makeChange = function(total){
   return output;
 };
 
-console.log(makeChange(25));
+console.log(makeChange(100));
 
 
