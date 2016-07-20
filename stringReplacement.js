@@ -28,7 +28,7 @@ function stringReplacement(str, replace, replaceWith) {
   return resultChars.join('');
 };
 
-var str = 'hello world hello wor';
+var str = 'hello world hello wo';
 var replace = 'world';
 var replaceWith = 'peoples';
 
