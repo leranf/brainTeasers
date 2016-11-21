@@ -5,14 +5,29 @@
 // return [0, 1].
 
 
+// function twoSum(nums, target) {
+//   for (var i = 0; i < nums.length; i++) {
+//     for (var j = 0; j < nums.length; j++) {
+//       if (i !== j && nums[i] + nums[j] === target) {
+//         return [i, j];
+//       }
+//     }
+//   }
+//   return null;
+// }
+
 function twoSum(nums, target) {
+  var possibilities = {};
   for (var i = 0; i < nums.length; i++) {
-    for (var j = 0; j < nums.length; j++) {
-      if (i !== j && nums[i] + nums[j] === target) {
-        return [i, j];
-      }
+    possibilities[nums[i]] = i;
+  }
+  for (var i = 0; i < nums.length; i++) {
+    var diff = target - nums[i];
+    if (possibilities.hasOwnProperty(diff) && possibilities[diff] !== i) {
+      return [i, possibilities[diff]];
     }
   }
+
   return null;
 }
 
