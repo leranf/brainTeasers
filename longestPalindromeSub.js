@@ -1,10 +1,13 @@
 function longestPalindrome(str) {
   function isPalindrome(str) {
-    var reverse = '';
-    for (var i = str.length - 1; i >= 0; i--) {
-      reverse += str[i];
+    var mid = Math.floor(str.length / 2);
+    var lastIndex = str.length - 1;
+    for (var i = 0; i <= mid; i++) {
+      if (str[i] !== str[lastIndex - i]) {
+        return false;
+      }
     }
-    return str === reverse;
+    return true;
   }
 
   var longest = '';
