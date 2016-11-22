@@ -7,11 +7,12 @@ function longestPalindrome(str) {
     return str === reverse;
   }
 
-  var substrings = [];
   var longest = '';
   function createSubstr(substr, i) {
-    if (substr.length) {
-      substrings.push(substr);
+    if (substr.length > longest.length) {
+      if (isPalindrome(substr)) {
+        longest = substr;
+      }
     }
 
     if (str.length === i) {
@@ -21,14 +22,7 @@ function longestPalindrome(str) {
     createSubstr(substr + str[i], i + 1);
   }
   for (var i = 0; i < str.length; i++) {
-    createSubstr('', i);
-  }
-
-  for (var i = 0; i < substrings.length; i++) {
-    var currSubstr = substrings[i];
-    if (currSubstr.length > longest.length && isPalindrome(currSubstr)) {
-      longest = currSubstr;
-    }
+    createSubstr(str[i], i+1);
   }
   return longest;
 }
